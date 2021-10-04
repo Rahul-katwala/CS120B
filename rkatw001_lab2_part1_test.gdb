@@ -1,42 +1,20 @@
-#include <avr/io.h>
-#ifdef _SIMULATE_
-#include “simAVRHeader.h”
-#endif
-int main(void) {
-
-  DDRA = 0x00;
-  PORTA =0xFF;
-  DDRB = 0xFF;
-  PORTB = 0x00;
-
-  while(1){
-
-         if(PINA==0x00){
-
-                PORTC= 0x04;
-
-        }
-
-        else if(  (PINA==0x01) || (PINA==0x02) || (PINA==0x04) || (PINA==0x08) ) {
-                PORTC= 0x03;
-        }
-
-        else if( (PINA== 0x03) || (PINA==0x05) || (PINA==0x09) || (PINA==0x06) || (PINA==0x0C) ||  (PINA==0x0A)){
-
-                PORTC= 0x02;
-
-        }
-
-        else if( (PINA==  0x07) || (PINA==0x08) || (PINA==0x0D) || (PINA==0x0E)){
-                PORTC=  0x01;
-
-        }
-
-        else{
-
-                PORTC= 0x00;
-        }
-
-
-    }
-}
+tests = [ {'description': 'PINA: 0x00 => PORTB: 0x00',
+    'steps': [ {'inputs': [('PINA',0x00)], 'iterations': 5 } ],
+    'expected': [('PORTB',0x00)],
+    },
+    {'description': 'PINA: 0x01 => PORTB: 0x01.',
+    'steps': [ {'inputs': [('PINA', 0x01)],'iterations': 5} ], # Set PIN to val then run one iteration
+       # {'inputs': [('PIN',<val>)], 'time': 300 }, # Set PIN to val then run 300 ms
+       # {'inputs': [('PIN',<val>)], 'iterations': 1, 'expected': [('PORT',<val>)]},
+       # 'inputs': [('PIN',<val>)], 'time': 600}, ],
+    'expected': [('PORTB',0x01)],
+    },
+     {'description': 'PINA: 0x02 => PORTB: 0x00',
+    'steps': [ {'inputs': [('PINA',0x02)], 'iterations': 5 } ],
+    'expected': [('PORTB',0x00)],
+    },
+    {'description': 'PINA: 0x03 => PORTB: 0x00',
+    'steps': [ {'inputs': [('PINA',0x03)], 'iterations': 5 } ],
+    'expected': [('PORTB',0x00)],
+    },
+    ]
