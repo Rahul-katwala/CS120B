@@ -1,4 +1,3 @@
-
 #include <avr/io.h>
 #ifdef _SIMULATE_
 #include “simAVRHeader.h”
@@ -15,9 +14,10 @@ int main(void) {
 
         while(1){
 
-                if ((PA0) && (!PA1)) {
-                        PB0=0x01;
+                 if (((PINA & 0x01) == 0x01) && ((PINA & 0x02) != 0x02 )) {
+                        PORTB = 0x01;
                 }
+
 
         }
 }
