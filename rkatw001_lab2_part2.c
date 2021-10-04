@@ -1,6 +1,6 @@
 #include <avr/io.h>
 #ifdef _SIMULATE_
-#include “simAVRHeader.h”
+#include <simAVRHeader.h>
 #endif
 int main(void) {
 
@@ -11,13 +11,9 @@ int main(void) {
 
   while(1){
 
-         if(PINA==0x00){
 
-                PORTC= 0x04;
 
-        }
-
-        else if(  (PINA==0x01) || (PINA==0x02) || (PINA==0x04) || (PINA==0x08) ) {
+        if(  (PINA==0x01) || (PINA==0x02) || (PINA==0x04) || (PINA==0x08) ) {
                 PORTC= 0x03;
         }
 
@@ -32,6 +28,14 @@ int main(void) {
 
         }
 
+        else if(PINA==0x00){
+
+                PORTC= 0x04;
+
+        }
+
+
+
         else{
 
                 PORTC= 0x00;
@@ -39,4 +43,5 @@ int main(void) {
 
 
     }
+        return 0;
 }
